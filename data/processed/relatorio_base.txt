@@ -1,0 +1,71 @@
+====================================================================
+BASE FINAL -- perfis de municípios paulistas
+====================================================================
+Municípios: 645   Colunas: 54
+
+--- Anos de referência por fonte ---
+  Criminalidade (SSP)   2023-2025  (3.000 ano(s)-equivalente(s) de exposição)
+  Gestão (IEGM/TCE-SP)  exercícios 2022-2024 (apurados em 2023-2025)
+  População (denominador das taxas)  2024
+  PIB (SIDRA 5938)      2023
+  Urbanização (SIDRA 9923)  Censo 2022
+  Alfabetização, renda mediana, esgoto e lixo  Censo 2022
+
+--- Municípios aptos à modelagem ---
+Com todos os blocos (crime + socioeconômico + gestão): 644
+Sem IEGM (fora da modelagem): 1 -> São Paulo
+Com população < 5,000: 149 (23.1%) -- mantidos na base, usar em análise de sensibilidade
+
+--- Valores ausentes ---
+  taxa_recuperacao_veiculo             44 (6.8%)
+  prop_veiculo_motocicleta             44 (6.8%)
+  iegm_conceito                         1 (0.2%)
+  i_planejamento_conceito               1 (0.2%)
+  i_fiscal_conceito                     1 (0.2%)
+  i_educ_conceito                       1 (0.2%)
+  i_saude_conceito                      1 (0.2%)
+  i_amb_conceito                        1 (0.2%)
+  i_cidade_conceito                     1 (0.2%)
+  i_gov_ti_conceito                     1 (0.2%)
+  iegm_ord                              1 (0.2%)
+  i_planejamento_ord                    1 (0.2%)
+  i_fiscal_ord                          1 (0.2%)
+  i_educ_ord                            1 (0.2%)
+  i_saude_ord                           1 (0.2%)
+  i_amb_ord                             1 (0.2%)
+  i_cidade_ord                          1 (0.2%)
+  i_gov_ti_ord                          1 (0.2%)
+  iegm_exercicio_ref                    1 (0.2%)
+  iegm_ano_apuracao                     1 (0.2%)
+
+--- Bloco B: taxas por 100 mil hab./ano ---
+  variável                           média   mediana        máx   zeros
+  taxa_cvli                            6.9       5.7       50.5   131 (20%)
+  taxa_tentativa_homicidio            11.3       9.4       73.6    66 (10%)
+  taxa_lesao_dolosa                  409.5     394.7     1169.1     0 (0%)
+  taxa_roubo_outros                   63.6      28.0      952.9    77 (12%)
+  taxa_roubo_veiculo                  18.8       6.6      255.6   191 (30%)
+  taxa_roubo_carga                     3.9       0.0      194.5   367 (57%)
+  taxa_furto_outros                  665.6     621.8     2947.5     0 (0%)
+  taxa_furto_veiculo                  57.0      39.9      522.6    26 (4%)
+  taxa_estupro_total                  44.9      40.6      183.4     7 (1%)
+  taxa_trafico                       106.2      90.8      898.2    12 (2%)
+
+  Zeros elevados = zero-inflação. Ela cai ao ampliar a janela:
+  estimativa Poisson para CVLI -- 1 ano: 46% | 2 anos: 31% | 3 anos: 23% | 5 anos: 14%.
+
+--- pib_percapita x renda_domiciliar_mediana ---
+  Spearman = 0.407  (limiar de redundância 0.85) -> pib_percapita como 'feature'
+
+--- Espaço de features (etapa única) ---
+  criminalidade       9 features -> peso sugerido 1/sqrt(9) = 0.333
+  gestao              7 features -> peso sugerido 1/sqrt(7) = 0.378
+  socioeconomico      6 features -> peso sugerido 1/sqrt(6) = 0.408
+  Sem peso por bloco, cada bloco influencia a distância na
+  proporção do nº de colunas que a fonte por acaso tem.
+
+  Transformações aplicadas NO NOTEBOOK DE MODELAGEM (não aqui):
+    log1p nas taxas criminais e nas duas variáveis em R$ (PIB per
+    capita e renda domiciliar mediana), depois StandardScaler
+    ajustado só no subconjunto clusterizado, e peso 1/sqrt(n) por
+    bloco. Ver notebooks/03_preprocessamento.ipynb e o apêndice 03b.

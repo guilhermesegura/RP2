@@ -1,0 +1,41 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ambientes virtuais
+.venv/
+venv/
+env/
+
+# --- Dados brutos (baixados, não versionados) ---
+# SSP-SP e IEGM/TCE-SP são exports manuais (ver README, seções 1 e 2);
+# os CSVs do IBGE são baixados automaticamente por src/ibge_sidra.py.
+# Os .xlsx da SSP passam de 200 MB cada -- acima do limite do GitHub.
+data/raw/**
+!data/raw/**/
+!data/raw/**/.gitkeep
+
+# --- LaTeX ---
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.toc
+artigo.log
+
+# --- Editores / SO ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,55 @@
+coluna,bloco,tipo,papel,descricao
+codigo_ibge,identificacao,str,chave,Código IBGE de 7 dígitos
+municipio,identificacao,str,rotulo,Nome oficial IBGE
+populacao,identificacao,int,contexto,População residente (denominador)
+ano_populacao,identificacao,int,metadado,Ano da estimativa populacional
+taxa_cvli,criminalidade,float,feature,Crimes violentos letais intencionais (homicídio doloso + latrocínio + lesão seguida de morte) -- por 100 mil hab./ano
+taxa_tentativa_homicidio,criminalidade,float,feature,Tentativa de homicídio -- por 100 mil hab./ano
+taxa_lesao_dolosa,criminalidade,float,feature,Lesão corporal dolosa -- por 100 mil hab./ano
+taxa_roubo_outros,criminalidade,float,feature,Roubo (exceto veículo e carga) -- por 100 mil hab./ano
+taxa_roubo_veiculo,criminalidade,float,feature,Roubo de veículo -- por 100 mil hab./ano
+taxa_roubo_carga,criminalidade,float,feature_tier2,Roubo de carga -- por 100 mil hab./ano
+taxa_furto_outros,criminalidade,float,feature,Furto (exceto veículo e carga) -- por 100 mil hab./ano
+taxa_furto_veiculo,criminalidade,float,feature,Furto de veículo -- por 100 mil hab./ano
+taxa_estupro_total,criminalidade,float,feature,Estupro + estupro de vulnerável -- por 100 mil hab./ano
+taxa_trafico,criminalidade,float,feature,Tráfico de entorpecentes (mede também intensidade de policiamento) -- por 100 mil hab./ano
+prop_via_publica,textura,float,validacao_externa,Proporção de ocorrências com DESCR_SUBTIPOLOCAL='Via Pública' (sugerida como validação externa). DESCR_SUBTIPOLOCAL e não DESCR_TIPOLOCAL: este último só existe no export de 2025
+prop_noturno,textura,float,feature_tier2,Proporção de ocorrências noturnas entre as de período conhecido. Cobertura baixa (mediana 20%); não promover a feature
+cobertura_periodo,textura,float,qualidade,Fração de ocorrências com período preenchido. Mediana na janela: 0.20
+taxa_recuperacao_veiculo,textura,float,contexto,"Veículos localizados no município / veículos subtraídos no município. Excede 1 em 477 de 601 municípios (79%), pois inclui veículos subtraídos em outros municípios. NÃO mede efetividade institucional"
+prop_veiculo_motocicleta,textura,float,feature_tier2,Participação de motos entre os veículos subtraídos
+prop_celular_em_furto_roubo,textura,float,feature_tier2,Ocorrências com celular subtraído / total de ocorrências
+pib_percapita,socioeconomico,float,feature,PIB per capita em R$ (recalculado com a população de referência). Distorcido por enclaves industriais; Spearman com renda_domiciliar_mediana = 0.41
+taxa_urbanizacao,socioeconomico,float,feature,"% da população em domicílio urbano (Censo 2022, tabela SIDRA 9923)"
+ano_pib,socioeconomico,int,metadado,Ano de referência do PIB
+taxa_alfabetizacao,socioeconomico,float,feature,"% de pessoas de 15 anos ou mais alfabetizadas (Censo 2022, SIDRA 9543)"
+renda_domiciliar_mediana,socioeconomico,float,feature,"Rendimento domiciliar per capita mediano, em R$ (Censo 2022, SIDRA 10295)"
+prop_esgoto_adequado,socioeconomico,float,feature,"% de domicílios com rede geral de esgoto ou fossa séptica (Censo 2022, SIDRA 6805)"
+prop_lixo_coletado,socioeconomico,float,feature,"% de domicílios com lixo coletado (Censo 2022, SIDRA 6892)"
+ano_censo,socioeconomico,int,metadado,Ano do Censo dos quatro indicadores acima
+iegm_ord,gestao,ordinal_1_5,contexto,"IEGM iegm: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref). Fora das features: é composto pelas 7 dimensões, que já entram"
+iegm_conceito,gestao,str,rotulo,"IEGM iegm: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_planejamento_ord,gestao,ordinal_1_5,feature,"IEGM i_planejamento: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_planejamento_conceito,gestao,str,rotulo,"IEGM i_planejamento: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_fiscal_ord,gestao,ordinal_1_5,feature,"IEGM i_fiscal: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_fiscal_conceito,gestao,str,rotulo,"IEGM i_fiscal: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_educ_ord,gestao,ordinal_1_5,feature,"IEGM i_educ: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_educ_conceito,gestao,str,rotulo,"IEGM i_educ: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_saude_ord,gestao,ordinal_1_5,feature,"IEGM i_saude: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_saude_conceito,gestao,str,rotulo,"IEGM i_saude: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_amb_ord,gestao,ordinal_1_5,feature,"IEGM i_amb: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_amb_conceito,gestao,str,rotulo,"IEGM i_amb: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_cidade_ord,gestao,ordinal_1_5,feature,"IEGM i_cidade: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_cidade_conceito,gestao,str,rotulo,"IEGM i_cidade: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+i_gov_ti_ord,gestao,ordinal_1_5,feature,"IEGM i_gov_ti: conceito em ordinal (C=1 ... A=5), MÉDIA dos exercícios disponíveis (ver iegm_exercicio_ref)"
+i_gov_ti_conceito,gestao,str,rotulo,"IEGM i_gov_ti: conceito em letra do exercício MAIS RECENTE -- rótulo legível; não corresponde a _ord, que é a média"
+iegm_exercicio_ref,gestao,str,metadado,"Exercício(s) avaliado(s) pelo IEGM, como intervalo"
+iegm_ano_apuracao,gestao,str,metadado,"Ano(s) de apuração do IEGM, como intervalo"
+total_ocorrencias_janela,qualidade,int,qualidade,Soma bruta das ocorrências do Bloco B -- detecta subnotificação
+n_ocorrencias,qualidade,int,qualidade,Total de ocorrências de qualquer natureza no município/janela
+flag_sem_iegm,qualidade,bool,flag,Sem nota IEGM (apenas a capital: fiscalizada pelo TCM-SP)
+flag_pop_pequena,qualidade,bool,flag,População < 5000 -- sujeito ao problema dos números pequenos
+flag_capital,qualidade,bool,flag,É o município de São Paulo
+janela_anos,qualidade,str,metadado,Janela temporal da SSP
+exposicao_anos,qualidade,float,metadado,"Anos-equivalentes de exposição (meses observados / 12, somados)"
+ano_populacao_ref,qualidade,int,metadado,Ano da população usada como denominador
